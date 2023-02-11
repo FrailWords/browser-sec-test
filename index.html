@@ -1,12 +1,20 @@
 <html>
 <body>
-<form id="autosubmit" action="/transfer" method="POST">
-  <input type="text" id="inputTo" name="user_to" value="t@t.t" />
-  <input type="number" id="inputAmount" name="amount" value="2" />
-  <input type="submit" value="Submit Request" />
-</form>
+<form id="transfer" name="transfer" action="/transfer" method="POST">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputTo">To</label>
+                <input type="text" class="form-control" id="inputTo" name="user_to" placeholder="Who do you want to transfer to?" value="t@t.t">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputAmount">Amount</label>
+                <input type="number" class="form-control" id="inputAmount" name="amount" placeholder="Amount to transfer" value="1000">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Send the Money!</button>
+          </form>
 <script>
-  document.getElementById("autosubmit").submit();
+  document.getElementById("transfer").requestSubmit();
 </script>
 </body>
 </html>
