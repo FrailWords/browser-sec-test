@@ -21,9 +21,7 @@
   const formData = new FormData();
   formData.append("user_to", "t@t.t")
   formData.append("amount", 1000)
-  axios.post({
-   url: '/transfer', 
-   data: formData,
+  axios.post('/transfer',formData, {
    headers: { "Content-Type": "multipart/form-data" }
   })
   .then(function (response) {
