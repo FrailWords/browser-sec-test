@@ -1,1 +1,0 @@
-# browser-sec-test
